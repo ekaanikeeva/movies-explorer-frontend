@@ -1,0 +1,15 @@
+.root {
+  padding: 20px 70px;
+}
+
+@media all and (max-width: 1000px) {
+  .root {
+    padding: 20px 7%;
+  }
+}
+
+@media all and (max-width: 420px) {
+  .root {
+    padding: 20px 5%;
+  }
+}
