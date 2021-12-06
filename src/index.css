@@ -1,0 +1,10 @@
+@import url(./vendor/normalize.css);
+@import url(./fonts/inter.css);
+
+body {
+  background: #202020;
+  max-width: 1280px;
+  min-height: 500px;
+  margin: 0 auto;
+}
+
