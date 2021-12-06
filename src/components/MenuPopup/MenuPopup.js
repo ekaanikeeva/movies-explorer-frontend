@@ -24,7 +24,7 @@ function MenuPopup(props) {
           className={styles.buttonClose}
           onClick={props.closeMenu}
         >
-          <img className={styles.iconClose} src={close_icon} />
+          <img className={styles.iconClose} src={close_icon} alt="Закрыть"/>
         </button>
         <Route exact path={["/", "/movies", "/saved-movies", "/profile"]}>
           <NavLink
