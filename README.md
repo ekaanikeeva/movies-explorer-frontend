@@ -1,4 +1,4 @@
-# Фронтенд дипломного проекта. 
+# Фронтенд дипломного проекта.
 
 **Информация о проекте:**
 
@@ -15,4 +15,4 @@
 
 [Ссылка на GitHub Бэкенда проекта](https://github.com/ekaanikeeva/movies-explorer-api)
 
-[Ссылка на будущий сайт](https://movies-explorernomoredomains.rocks) 
+[Ссылка на сайт](https://movies-search.nomoredomains.rocks/)
