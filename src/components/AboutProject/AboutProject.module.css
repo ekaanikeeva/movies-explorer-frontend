@@ -1,0 +1,138 @@
+.about {
+  margin: 110px 0 95px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  column-gap: 40px;
+}
+
+.about__heading {
+  margin: 0;
+  padding-bottom: 23px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  border-bottom: 1px solid #dadada;
+  grid-column: 1 / -1;
+}
+
+.about__head {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0;
+  padding-bottom: 26px;
+}
+
+.about__info {
+  margin: 70px 0 110px;
+}
+
+.about__text {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+.timetable {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 1fr 4fr;
+}
+
+.timetable__text {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #8b8b8b;
+  margin: 0;
+  padding: 14px 0;
+}
+
+.timetable__text:first-child {
+  color: #000000;
+  background: #3ddc84;
+  padding: 9px 0;
+}
+
+.timetable__text:nth-child(3) {
+  color: #ffffff;
+  background: #303030;
+  grid-column: -2 / -1;
+  grid-row: 1 / 2;
+  padding: 9px 0;
+}
+
+@media all and (max-width: 1000px) {
+  .about {
+    column-gap: 30px;
+    margin: 90px 0 70px;
+  }
+
+  .about__info {
+    margin-bottom: 90px;
+  }
+
+  .about__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .about {
+    margin: 70px 0;
+    grid-template-columns: auto;
+  }
+
+  .about__head {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 16px;
+  }
+
+  .about__text {
+    font-size: 11px;
+    line-height: 16px;
+    padding: 0;
+  }
+
+  .about__info {
+    margin: 0;
+    padding-top: 58px;
+  }
+
+  .about__heading {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .timetable {
+    margin-top: 60px;
+    grid-template-columns: 35% auto;
+  }
+
+  .timetable__text {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 10px 0;
+  }
+  .timetable__text:first-child {
+    padding: 11px 0;
+  }
+}
