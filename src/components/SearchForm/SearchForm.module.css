@@ -45,6 +45,7 @@
 
 .form__submit {
   padding: 0;
+  background: inherit;
   width: 34px;
   height: 34px;
   border-radius: 48px;
