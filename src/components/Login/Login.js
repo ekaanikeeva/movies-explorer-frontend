@@ -40,6 +40,7 @@ function Login() {
         minLength={2}
         maxLength={50}
         onChange={handleChangeEmail}
+        required
       />
       <h3 className={styles.form__hint}>Пароль</h3>
 
@@ -51,6 +52,7 @@ function Login() {
         className={styles.form__input}
         minLength={8}
         id="input-log-password"
+        required
       />
     </Form>
   );

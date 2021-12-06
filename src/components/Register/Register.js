@@ -45,6 +45,7 @@ function Register(props) {
         minLength={2}
         maxLength={50}
         onChange={handleChangeName}
+        required
       />
       <h3 className={styles.form__hint}>Email</h3>
       <input
@@ -56,6 +57,7 @@ function Register(props) {
         minLength={2}
         maxLength={50}
         onChange={handleChangeEmail}
+        required
       />
       <h3 className={styles.form__hint}>Пароль</h3>
       {/* <span className="input-title-error form__input-error" /> */}
@@ -67,6 +69,7 @@ function Register(props) {
         className={styles.form__input}
         minLength={8}
         id="input-reg-password"
+        required
       />
       <p className={styles.form__tip}>Что-то пошло не так...</p>
       {/* <span className="input-link-error form__input-error" /> */}

@@ -31,6 +31,10 @@
   color: #ee3465;
 }
 
+.form__input:focus {
+  outline: 1px solid #666;
+}
+
 .form__tip {
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-style: normal;

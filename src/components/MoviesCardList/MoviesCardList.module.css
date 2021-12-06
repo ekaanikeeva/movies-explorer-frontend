@@ -35,11 +35,18 @@
 
 .moviesBtn:hover {
   box-shadow: 1px -1px 5px 0px #464343;
+  cursor: pointer;
 }
 
 @media all and (max-width: 1279px) {
   .moviesCards {
     grid-template-columns: repeat(auto-fill, 339px);
+  }
+}
+
+@media all and (max-width: 780px) {
+  .moviesBtn {
+    padding: 11px 100px;
   }
 }
 
@@ -53,5 +60,9 @@
   }
   .moviesCards {
     grid-template-columns: 100%;
+  }
+
+  .moviesBtn {
+    padding: 11px 90px;
   }
 }

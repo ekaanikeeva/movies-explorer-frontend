@@ -50,6 +50,7 @@ input {
   margin-bottom: 16px;
   padding: 14px 0;
   transition: box-shadow 0.8s linear;
+  border: none;
 }
 
 .form__submit:hover {
