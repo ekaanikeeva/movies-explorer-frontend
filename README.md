@@ -16,3 +16,5 @@
 [Ссылка на GitHub Бэкенда проекта](https://github.com/ekaanikeeva/movies-explorer-api)
 
 [Ссылка на сайт](https://movies-search.nomoredomains.rocks/)
+
+[Ссылка на макет](https://www.figma.com/file/3f4Qq5vriHkqI2tBMoEY7m/Diploma-Ekaterina-Anikeeva?node-id=932%3A4450)
