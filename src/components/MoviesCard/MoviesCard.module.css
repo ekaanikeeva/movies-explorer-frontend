@@ -1,0 +1,132 @@
+.card {
+  display: grid;
+  grid-template-columns: auto 25%;
+  row-gap: 14px;
+}
+
+.photo {
+  width: 100%;
+  border-radius: 7px;
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+}
+
+.caption {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #ffffff;
+  grid-row: 2 / 3;
+  margin: 0;
+  padding-left: 13px;
+}
+
+.saveBtn {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 9px;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  background: #313131;
+  border-radius: 30px;
+  max-width: 72px;
+  max-height: 21px;
+  margin: 14px 14px 0 0;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: end;
+  padding: 6px 7px;
+  border: none;
+  transition: opacity 0.5 box-shadow 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.pinkBtn {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 9px;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  background: #ee3465;
+  border-radius: 30px;
+  max-width: 72px;
+  max-height: 21px;
+  margin: 14px 14px 0 0;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: end;
+  padding: 6px 7px;
+  border: none;
+  transition: opacity 0.5 box-shadow 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.saveBtn:hover {
+  box-shadow: 1px 1px 7px 0px #303030;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.closeButton {
+  width: 21px;
+  height: 21px;
+  border: none;
+  transition: opacity 0.3s linear box-shadow 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  background: inherit;
+  justify-self: end;
+  margin: 14px 14px 0 0;
+  padding: 0;
+  display: none;
+  border-radius: 50%;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card:hover .closeButton {
+  display: block;
+  box-shadow: 1px 1px 7px 0px #303030;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  box-shadow: 1px 1px 7px 0px #303030;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.pinkBtn:hover {
+  box-shadow: 1px 1px 7px 0px #c76981;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.filmDuration {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 10px;
+  align-items: center;
+  text-align: center;
+  color: #8b8b8b;
+  background: #2f2f2f;
+  border-radius: 3px;
+  padding: 3px 4px;
+  margin: 0 14px 0 0;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  width: max-content;
+  height: min-content;
+  justify-self: end;
+}

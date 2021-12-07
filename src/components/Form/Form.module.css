@@ -1,0 +1,160 @@
+input {
+  outline: none;
+}
+
+.form {
+  max-width: calc(396px - 15px);
+  min-height: 500px;
+  margin: auto;
+  display: grid;
+}
+
+.form__title {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 40px 0;
+  padding: 0;
+  color: white;
+}
+
+.form__profileTitle {
+  text-align: center;
+  margin-top: 74px;
+}
+
+.form__tip {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  margin: 0;
+  padding: 0;
+}
+
+.form__submit {
+  background: #4285f4;
+  border-radius: 3px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 69px;
+  margin-bottom: 16px;
+  padding: 14px 0;
+  transition: box-shadow 0.8s linear;
+  border: none;
+}
+
+.form__submit:hover {
+  box-shadow: 1px 0px 5px 1px #55556e;
+  cursor: pointer;
+}
+
+.form__submitProfile {
+  background: inherit;
+  border: none;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 69px;
+  margin-bottom: 16px;
+  padding: 0;
+  transition: opacity 0.5s linear;
+}
+
+.form__submitProfile:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.form__exitLink {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  background: inherit;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  color: #ee3465;
+  transition: opacity 0.5s linear;
+  margin: 0;
+}
+
+.form__exitLink:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.form__linkContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__link {
+  color: #4285f4;
+  text-decoration: none;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin-bottom: 80px;
+  transition: opacity 1s linear;
+  padding-left: 6px;
+}
+
+.form__link:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.form__link_text {
+  color: #8b8b8b;
+}
+
+@media all and (max-width: 620px) {
+  .form {
+    justify-content: space-evenly;
+    height: 83vh;
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form__link_text {
+    margin: 0;
+  }
+
+  .form__title {
+    font-size: 24px;
+    line-height: 29px;
+    margin-bottom: 75px;
+    text-align: center;
+  }
+}
+
+@media all and (min-height: 600px) {
+  .form {
+    margin-bottom: 30px;
+  }
+
+  .form__submitProfile {
+    margin-top: 25%;
+  }
+}

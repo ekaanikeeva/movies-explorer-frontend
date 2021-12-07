@@ -1,0 +1,143 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__logo {
+  width: 38px;
+  height: 38px;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.header__logo:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.header__logo_sign {
+  margin: 50px auto 0;
+  padding-right: 333px;
+}
+
+.header__links {
+  display: grid;
+  grid-column-gap: 30px;
+  grid-template-columns: repeat(2, auto);
+}
+
+.header__icon {
+  margin-left: 24px;
+}
+
+.header__link {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: right;
+  text-decoration: none;
+  transition: opacity 0.5s linear;
+  margin: auto;
+}
+
+.link_active {
+  font-weight: 500;
+}
+
+.header__link:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.header__link_movies {
+  color: white;
+  background-color: transparent;
+  display: block;
+}
+
+.header__link_movies:last-child {
+  grid-column: -1;
+  padding-left: 20px;
+}
+
+.header__link_register {
+  color: white;
+  background-color: transparent;
+}
+
+.header__link_enter {
+  border-radius: 3px;
+  grid-column: -1;
+  padding: 8px 20px;
+  background-color: #3ddc84;
+  color: black;
+}
+
+.header__burgerIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header__burger {
+  display: none;
+  background-color: inherit;
+  margin: 0;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  border: inherit;
+  transition: opacity 0.5s linear;
+}
+
+.header__burger:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+@media all and (max-width: 1000px) {
+  .header {
+    margin: 0 -20px;
+  }
+
+  .header__logo_sign {
+    margin: 21vh auto 0;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .header__link_movies {
+    display: none;
+  }
+
+  .header__burger {
+    display: block;
+    grid-column: -1/ -2;
+    padding-bottom: 8px;
+  }
+
+  .header__logo_sign {
+    margin: 5vh auto 0;
+    padding: 0;
+  }
+}
+
+@media all and (max-width: 420px) {
+  .header {
+    margin: 0;
+  }
+
+  .header__links {
+    column-gap: 14px;
+  }
+
+  .header__link {
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .header__link_enter {
+    padding: 5px 12px;
+  }
+}

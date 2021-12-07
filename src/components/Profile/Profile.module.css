@@ -1,0 +1,51 @@
+.form__hint {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__input {
+  width: 100%;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  color: #ffffff;
+  background-color: inherit;
+  padding: 0 0 0 17px;
+  border: none;
+  text-align: end;
+  margin: 0;
+  min-height: 46px;
+}
+
+.form__hint:first-of-type {
+  border-bottom: 1px solid #424242;
+}
+
+.form__tip {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  margin: 0;
+  padding: 0;
+}
+
+@media all and (max-width: 620px) {
+  .form__input {
+    width: 95%;
+    max-height: 46px;
+  }
+}
