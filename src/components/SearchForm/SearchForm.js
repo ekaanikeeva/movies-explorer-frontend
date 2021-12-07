@@ -19,6 +19,7 @@ function SearchForm() {
             name="search"
             placeholder="Фильм"
             type="search"
+            required
           />
           <button className={styles.form__submit} type="submit">
             <img

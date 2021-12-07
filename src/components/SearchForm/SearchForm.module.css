@@ -6,6 +6,18 @@
   padding: 19px;
 }
 
+.search:hover {
+  box-shadow: 1px 1px 5px 1px #303030;
+}
+
+.form__input:focus {
+  border-radius: 4px;
+  margin-right: 16px;
+  padding: 7px 5px;
+  outline: 0.1px solid #2e2e2e;
+  background: #202020;
+}
+
 .search__image {
   margin-right: 10px;
 }
@@ -121,15 +133,15 @@
   display: none;
 }
 
-.checkbox:checked + .slider {
+.checkbox:checked+.slider {
   background-color: #3ddc84;
 }
 
-.checkbox:focus + .slider {
+.checkbox:focus+.slider {
   box-shadow: 0 0 1px white;
 }
 
-.checkbox:checked + .slider:before {
+.checkbox:checked+.slider:before {
   transform: translateX(16px);
 }
 
