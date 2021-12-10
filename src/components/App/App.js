@@ -10,12 +10,22 @@ import Movies from "../Movies/Movies";
 import Profile from "../Profile/Profile";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import PageNotFound from "../PageNotFound/PageNotFound";
+import { getMovies } from "../../utils/MoviesApi";
+import { MoviesContext } from "../../context/MoviesContext";
+import { useCookies } from 'react-cookie';
 
 function App() {
-  // const [isSign, setIsSign] = React.useState(false);
-  // const history = useHistory();
+  
+  // const [movies, setMovies] = React.useState("");
+  const [cookies, setCookies] = useCookies(['movies']);
+  // const [searchResultCookies, setSearchResultCookies, removeCookies] =useCookies('search')
+  function getTimeFromMins(mins) {
+    let hours = Math.trunc(mins/60);
+    let minutes = mins % 60;
+    return hours + 'ч ' + minutes + 'м';
+};
 
-  // console.log(history);
+  // console.log(cookies)
 
   return (
     <div className={styles.root}>
@@ -31,14 +41,16 @@ function App() {
         <Route path="/signin">
           <Login />
         </Route>
-        <Route path="/movies">
-          <Movies />
-        </Route>
+        {/* <MoviesContext.Provider value={movies}> */}
+          <Route path="/movies">
+            <Movies cookies={cookies} setCookies={setCookies} convertTime={getTimeFromMins} />
+          </Route>
+          <Route path="/saved-movies">
+            <SavedMovies  convertTime={getTimeFromMins} />
+          </Route>
+        {/* </MoviesContext.Provider> */}
         <Route path="/profile">
           <Profile />
-        </Route>
-        <Route path="/saved-movies">
-          <SavedMovies />
         </Route>
         <Route path="*">
           <PageNotFound />
