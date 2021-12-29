@@ -201,6 +201,7 @@ function App() {
             searchRequest={searchRequest}
             setSearchRequest={setSearchRequest}
             noFilmText={noFilmText}
+            windowWidth={windowWidth}
           />
 
           <ProtectedRoute

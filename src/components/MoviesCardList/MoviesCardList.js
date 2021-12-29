@@ -23,7 +23,7 @@ function MoviesCardList({
   const [buttonText, setButtonText] = React.useState("Сохранить");
   const [showMovies, setShowMovies] = React.useState(windowWidth > 1170 ? 12 : windowWidth > 769 ? 8 : 5);
   const [addedByButton, setAddedByButton] = React.useState(windowWidth > 1170 ? 3 : 2);
-  
+
 
   let filteredMovies =  movies
   .filter((item) => {
