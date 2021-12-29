@@ -10,7 +10,7 @@ function Main() {
   return (
     <main>
       <Promo />
-      <NavTab />
+      {/* <NavTab /> */}
       <AboutProject />
       <Techs />
       <AboutMe />

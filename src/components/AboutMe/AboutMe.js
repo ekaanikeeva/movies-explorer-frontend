@@ -18,7 +18,11 @@ function AboutMe() {
         путешествовать, учиться новому в Веб-разработке и английском.
       </p>
       <div className={styles.aboutme__links}>
-        <a className={styles.aboutme__link} target="_blank" href="https://www.facebook.com/profile.php?id=100041963924423">
+        <a
+          className={styles.aboutme__link}
+          target="_blank"
+          href="https://www.facebook.com/profile.php?id=100041963924423"
+        >
           Facebook
         </a>
         <a

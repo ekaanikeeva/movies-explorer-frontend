@@ -25,7 +25,11 @@ function Footer() {
           >
             Github
           </a>
-          <a className={styles.footer__link} href="https://www.facebook.com/profile.php?id=100041963924423" target="_blank">
+          <a
+            className={styles.footer__link}
+            href="https://www.facebook.com/profile.php?id=100041963924423"
+            target="_blank"
+          >
             Facebook
           </a>
         </nav>
