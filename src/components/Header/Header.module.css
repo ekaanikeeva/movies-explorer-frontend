@@ -11,7 +11,7 @@
 
 .header__logo:hover {
   cursor: pointer;
-  transform:scale(1.05);
+  transform: scale(1.05);
 }
 
 .header__logo_sign {

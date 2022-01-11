@@ -12,9 +12,10 @@ function Movies({
   movies,
   convertTime,
   saveFilms,
-  isSave, 
+  isSave,
   setIsSave,
-  isCheck, setIsCheck,
+  isCheck,
+  setIsCheck,
   windowWidth,
   searchRequest,
   setSearchRequest,
@@ -28,30 +29,32 @@ function Movies({
 
   return (
     <section className={styles.movies}>
-      <SearchForm setRequest={setSearchRequest} request={searchRequest} isCheck={isCheck} setIsCheck={setIsCheck}
-          nameInput="search" />
+      <SearchForm
+        setRequest={setSearchRequest}
+        request={searchRequest}
+        isCheck={isCheck}
+        setIsCheck={setIsCheck}
+        nameInput="search"
+      />
       {isLoaded ? (
         <Preloader />
       ) : (
         <>
-        <Route exact path="/movies">
-          
-          <MoviesCardList
-          isCheck={isCheck}
-            movies={movies}
-            request={searchRequest}
-            isSave={isSave}
-            setIsSave={setIsSave}
-            saveFilms={saveFilms}
-            convertTime={convertTime}
-            windowWidth={windowWidth}
-            noFilmText={noFilmText}
-          />
-        </Route>
-      </>
+          <Route exact path="/movies">
+            <MoviesCardList
+              isCheck={isCheck}
+              movies={movies}
+              request={searchRequest}
+              isSave={isSave}
+              setIsSave={setIsSave}
+              saveFilms={saveFilms}
+              convertTime={convertTime}
+              windowWidth={windowWidth}
+              noFilmText={noFilmText}
+            />
+          </Route>
+        </>
       )}
-      
-      
     </section>
   );
 }

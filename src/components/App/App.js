@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./App.module.css";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import Header from "../Header/Header";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
@@ -14,7 +14,6 @@ import { deleteFilm, getSavedMovies, saveFilm } from "../../utils/mainApi";
 import { getMovies } from "../../utils/MoviesApi";
 import { UserContext } from "../../context/UserContext";
 import { useCookies } from "react-cookie";
-
 
 import {
   register,
@@ -37,7 +36,7 @@ function App() {
   const [user, setUser] = React.useState({});
   const [saveFilms, setSaveFilms] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const [loggedIn, setLoggedIn] = React.useState(cookies.loggedIn || false);
   const [isSave, setIsSave] = React.useState(false);
@@ -46,17 +45,18 @@ function App() {
 
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
-
   function tokenCheck() {
     token()
       .then((res) => {
         setLoggedIn(true);
-        setCookies("loggedIn", true)
+        setCookies("loggedIn", true);
         setUser(res.data[0]);
       })
       .catch(() => {
-        history.push("/");
-        removeCookies("loggedIn")
+        if (history.location.pathname !== "/404") {
+          history.push("/");
+          removeCookies("loggedIn");
+        }
       });
   }
   React.useEffect(() => {
@@ -64,32 +64,54 @@ function App() {
   }, [history]);
 
   React.useEffect(() => {
-    if (user !== {}) {
-        getMovies()
+    let userLength = Object.keys(user).length;
+
+    if (userLength > 0) {
+      getMovies()
         .then((res) => {
           setMovies(res);
-          setIsLoaded(false);
-          setTimeout(() => {setNoFilmText("НИЧЕГО НЕ НАЙДЕНО")} ,1500) 
+          setTimeout(() => {
+            setNoFilmText("НИЧЕГО НЕ НАЙДЕНО");
+          }, 1500);
         })
         .catch((err) => {
           console.log(`Не удалось загрузить фильмы ${err}`);
-          setIsLoaded(false)
-        })
+          setIsLoaded(false);
+        });
 
-      getSavedMovies()
+        getSavedMovies()
         .then((res) => {
-          
           setSaveFilms(res.filter((item) => item.owner === user._id));
           setIsLoaded(false);
-          setTimeout(() => {setNoFilmText("НИЧЕГО НЕ НАЙДЕНО")} ,1500) 
+          setTimeout(() => {
+            setNoFilmText("НИЧЕГО НЕ НАЙДЕНО");
+          }, 1500);
         })
         .catch((err) => {
           console.log(`Не удалось загрузить сохраненные фильмы ${err}`);
-          setIsLoaded(false)
-        })
-
+          setIsLoaded(false);
+        });
     }
-  }, [isSave, loggedIn, user]);
+  }, [user]);
+
+  React.useEffect(() => {
+    let userLength = Object.keys(user).length;
+
+    if (userLength > 0) {
+      getSavedMovies()
+        .then((res) => {
+          setSaveFilms(res.filter((item) => item.owner === user._id));
+          setIsLoaded(false);
+          setTimeout(() => {
+            setNoFilmText("НИЧЕГО НЕ НАЙДЕНО");
+          }, 1500);
+        })
+        .catch((err) => {
+          console.log(`Не удалось загрузить сохраненные фильмы ${err}`);
+          setIsLoaded(false);
+        });
+    }
+  }, [isSave]);
 
   React.useEffect(() => {
     if (searchRequest !== null) {
@@ -98,9 +120,9 @@ function App() {
   }, [searchRequest]);
 
   React.useEffect(() => {
-    if(isCheck !== false) setCookies('checkMovies', !isCheck);
-    else removeCookies('checkMovies')
-  }, [isCheck])
+    if (isCheck !== false) setCookies("checkMovies", !isCheck);
+    else removeCookies("checkMovies");
+  }, [isCheck]);
 
   function getTimeFromMins(mins) {
     let hours = Math.trunc(mins / 60);
@@ -112,12 +134,13 @@ function App() {
     register(name, email, password)
       .then(() => {
         handleLogin(email, password);
-        setErrorMessage('');
+        setErrorMessage("");
         setIsError(false);
       })
       .catch((err) => {
-        if(err == 409) { setErrorMessage(`Пользователь с таким email уже существует ${err}`);}
-        else setErrorMessage(`Не удалось зарегистрироваться ${err}`);
+        if (err == 409) {
+          setErrorMessage(`Пользователь с таким email уже существует ${err}`);
+        } else setErrorMessage(`Не удалось зарегистрироваться ${err}`);
         return setIsError(true);
       });
   }
@@ -125,12 +148,11 @@ function App() {
   function handleLogin(email, password) {
     login(email, password)
       .then((res) => {
-        console.log("login", res);
-        setCookies("jwt", res.token);
-        setCookies("loggedIn", true)
+        setCookies("loggedIn", true);
         setLoggedIn(true);
         history.push("/movies");
-        setErrorMessage('');
+        window.location.reload();
+        setErrorMessage("");
         setIsError(false);
       })
       .catch((err) => {
@@ -145,42 +167,47 @@ function App() {
     editUserInfo(name, email)
       .then((res) => {
         setUser(res);
-        setErrorMessage('');
-        setIsError(false);
+        setErrorMessage("Данные профиля успешно обновлены");
+        setIsError(true);
+        setTimeout(() => {
+          setErrorMessage("");
+          setIsError(false);
+        }, 3000);
       })
       .catch((err) => {
-        if(err == 409) { setErrorMessage(`Пользователь с таким email уже существует ${err}`);}
-        else { setErrorMessage(`Не удалось обновить данные пользователя ${err}`); }
+        if (err == 409) {
+          setErrorMessage(`Пользователь с таким email уже существует ${err}`);
+        } else {
+          setErrorMessage(`Не удалось обновить данные пользователя ${err}`);
+        }
         setIsError(true);
       });
   }
 
   function lieveProfile() {
     signOut()
-      .then(() => {
-        history.goBack();
-      })
-      .catch(() => {
-        setLoggedIn(false);
-        removeCookies("loggedIn")
-      });
+    .then(res => {
+    console.log("Jwt was successfully deleted");
+  }).catch(err => {
+    console.log(err);
+  });
+    setLoggedIn(false);
+    removeCookies("loggedIn");
+    removeCookies("request");
   }
 
   function updateWindowWidth() {
     setWindowWidth(window.innerWidth);
   }
 
-
   React.useEffect(() => {
-    setInterval( () => {
-      window.addEventListener("resize", updateWindowWidth)
-    return () => {
-      window.removeEventListener("resize", updateWindowWidth);
-    }}, 10000
-    ) 
-  });
-
-
+    setInterval(() => {
+      window.addEventListener("resize", updateWindowWidth);
+      return () => {
+        window.removeEventListener("resize", updateWindowWidth);
+      };
+    }, 10000);
+  }, [window.innerWidth]);
 
   return (
     <div className={styles.root}>
@@ -195,8 +222,10 @@ function App() {
             convertTime={getTimeFromMins}
             saveFilms={saveFilms}
             movies={movies}
-            isSave={isSave} setIsSave={setIsSave}
-            isCheck={isCheck} setIsCheck={setIsCheck}
+            isSave={isSave}
+            setIsSave={setIsSave}
+            isCheck={isCheck}
+            setIsCheck={setIsCheck}
             isLoaded={isLoaded}
             searchRequest={searchRequest}
             setSearchRequest={setSearchRequest}
@@ -211,7 +240,8 @@ function App() {
             convertTime={getTimeFromMins}
             saveFilms={saveFilms}
             movies={movies}
-            isSave={isSave} setIsSave={setIsSave}
+            isSave={isSave}
+            setIsSave={setIsSave}
             windowWidth={windowWidth}
             cookies={cookies}
             setCookies={setCookies}
@@ -226,20 +256,49 @@ function App() {
             loggedIn={loggedIn}
             lieveProfile={lieveProfile}
             onEdit={handleChangeInfo}
-            errorMessage={errorMessage} isError={isError}
+            errorMessage={errorMessage}
+            isError={isError}
+            isLoaded={isLoaded}
           />
+
           <Route exact path="/">
             <Main />
           </Route>
+
           <Route path="/signup">
-            <Register handleRegister={handleRegister} errorMessage={errorMessage} isError={isError} />
+            {() =>
+              !loggedIn ? (
+                <Register
+                  handleRegister={handleRegister}
+                  errorMessage={errorMessage}
+                  isError={isError}
+                  loggedIn={loggedIn}
+                />
+              ) : (
+                <Redirect exact to="/" />
+              )
+            }
           </Route>
-          <Route path="/signin" >
-            <Login handleLogin={handleLogin} errorMessage={errorMessage} isError={isError}/>
+          <Route path="/signin">
+            {() =>
+              !loggedIn ? (
+                <Login
+                  handleLogin={handleLogin}
+                  errorMessage={errorMessage}
+                  isError={isError}
+                  loggedIn={loggedIn}
+                />
+              ) : (
+                <Redirect exact to="/" />
+              )
+            }
           </Route>
-          <Route path="*">
+
+          <Route path="/404">
             <PageNotFound />
           </Route>
+
+          <Redirect from="*" to="/404" />
         </Switch>
         <Route exact path={["/", "/movies", "/saved-movies"]}>
           <Footer />

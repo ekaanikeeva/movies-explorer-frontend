@@ -5,12 +5,11 @@ import Form from "../Form/Form";
 import { useValidation } from "../../utils/Validate";
 
 function Login({ handleLogin, isError, errorMessage }) {
-
   const { values, handleChange, errors, isValid } = useValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleLogin(values['email'] , values['password']);
+    handleLogin(values["email"], values["password"]);
   }
 
   return (
@@ -37,7 +36,15 @@ function Login({ handleLogin, isError, errorMessage }) {
         onChange={handleChange}
         required
       />
-      <span className={errors["email"] === '' ? styles.form__tip : classNames(styles.form__tip, styles.form__tip_active)}>{errors["email"]}</span>
+      <span
+        className={
+          errors["email"] === ""
+            ? styles.form__tip
+            : classNames(styles.form__tip, styles.form__tip_active)
+        }
+      >
+        {errors["email"]}
+      </span>
 
       <h3 className={styles.form__hint}>Пароль</h3>
       <input
@@ -48,7 +55,15 @@ function Login({ handleLogin, isError, errorMessage }) {
         minLength={8}
         required
       />
-      <span className={errors["password"] === '' ? styles.form__tip : classNames(styles.form__tip, styles.form__tip_active)}>{errors["password"]}</span>
+      <span
+        className={
+          errors["password"] === ""
+            ? styles.form__tip
+            : classNames(styles.form__tip, styles.form__tip_active)
+        }
+      >
+        {errors["password"]}
+      </span>
     </Form>
   );
 }

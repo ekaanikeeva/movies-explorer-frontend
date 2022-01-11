@@ -34,7 +34,7 @@ input {
   color: #ee3465;
   margin: 0;
   padding: 0 0 20px;
-  opacity: 0
+  opacity: 0;
 }
 
 .form__tip_active {
@@ -66,7 +66,6 @@ input {
 
 .form__submit_disabled {
   opacity: 0.7;
-  
 }
 
 .form__submitProfile {
@@ -85,7 +84,6 @@ input {
   padding: 0;
   transition: opacity 0.5s linear;
 }
-
 
 .form__submitProfile:hover {
   cursor: pointer;

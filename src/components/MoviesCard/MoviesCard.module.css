@@ -26,8 +26,6 @@
   transition: display 3s opacity 3s linear;
 }
 
-
-
 .photo {
   width: 100%;
   height: 201px;
@@ -43,7 +41,6 @@
   transform: scale(1.05);
   box-shadow: 1px -1px 6px 3px #444242;
 }
-
 
 .caption {
   font-family: Inter, Arial, Helvetica, sans-serif;

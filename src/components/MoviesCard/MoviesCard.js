@@ -5,7 +5,7 @@ import closeImg from "../../images/closeicon.svg";
 import { saveFilm, deleteFilm } from "../../utils/mainApi";
 import { UserContext } from "../../context/UserContext";
 import classNames from "classnames";
-//
+
 function MoviesCard({
   setIsSave,
   saveFilmsArray,
@@ -28,7 +28,7 @@ function MoviesCard({
   const [isMovieSave, setIsMovieSave] = React.useState(false);
   const [isMovieDelete, setIsMovieDelete] = React.useState(false);
   const [buttonDisaled, setButtonDisabled] = React.useState(false);
-const history=useHistory();
+  const history = useHistory();
 
   React.useEffect(() => {
     setUsersFilms(
@@ -46,40 +46,39 @@ const history=useHistory();
     );
   }, [saveFilmsArray]);
 
-
   function savedFilm(film) {
-    setButtonDisabled(true)
+    setButtonDisabled(true);
     saveFilm(film)
       .then((res) => {
         console.log("сохранен");
         setButtonText("✓");
         setIsMovieSave(true);
         setIsSave(true);
-        setButtonDisabled(false)
+        setButtonDisabled(false);
       })
       .catch((err) => {
         console.log(`Не удалось сохранить фильм ${err}`);
-        setButtonDisabled(false)
+        setButtonDisabled(false);
       });
   }
 
   function removeFilm() {
-    setButtonDisabled(true)
+    setButtonDisabled(true);
     deleteFilm(movie._id)
-        .then((res) => {
-          console.log("фильм удален");
-          setIsMovieSave(true);
-          setIsSave(true);
-          setIsMovieDelete(true)
-          setButtonDisabled(false)
-        })
-        .catch((err) => {
-          setButtonDisabled(false)
-        });
+      .then((res) => {
+        console.log("фильм удален");
+        setIsMovieSave(true);
+        setIsSave(true);
+        setIsMovieDelete(true);
+        setButtonDisabled(false);
+      })
+      .catch((err) => {
+        setButtonDisabled(false);
+      });
   }
 
   function handleSave() {
-    setButtonDisabled(true)
+    setButtonDisabled(true);
     if (isMovieSave) {
       deleteFilm(savedMovie._id)
         .then((res) => {
@@ -87,11 +86,11 @@ const history=useHistory();
           setButtonText("Сохранить");
           setIsMovieSave(false);
           setIsSave(true);
-          setButtonDisabled(false)
+          setButtonDisabled(false);
         })
         .catch((err) => {
-          setButtonDisabled(false)
-          console.log(err)
+          setButtonDisabled(false);
+          console.log(err);
         });
     } else {
       savedFilm({
@@ -111,30 +110,49 @@ const history=useHistory();
   }
 
   return (
-    <li className={isMovieDelete ? classNames(styles.card, styles.card_disactive) : styles.card}>
+    <li
+      className={
+        isMovieDelete
+          ? classNames(styles.card, styles.card_disactive)
+          : styles.card
+      }
+    >
       <Route exact path="/movies">
         <button
-            className={isMovieSave ? styles.pinkBtn : styles.saveBtn}
-            onClick={handleSave} disabled={buttonDisaled}
-          >
-            {buttonText}
-          </button>
-            <a className={styles.photo} href={movie.trailerLink ? movie.trailerLink : movie.thumbnail} target="_blank"><img className={styles.photo} src={src} alt={caption}/></a>
-          <h3 className={styles.caption}>{caption}</h3>
-          
-          <p className={styles.filmDuration}>{duration}</p>
+          className={isMovieSave ? styles.pinkBtn : styles.saveBtn}
+          onClick={handleSave}
+          disabled={buttonDisaled}
+        >
+          {buttonText}
+        </button>
+        <a
+          className={styles.photo}
+          href={movie.trailerLink ? movie.trailerLink : movie.thumbnail}
+          target="_blank"
+        >
+          <img className={styles.photo} src={src} alt={caption} />
+        </a>
+        <h3 className={styles.caption}>{caption}</h3>
+
+        <p className={styles.filmDuration}>{duration}</p>
       </Route>
       <Route exact path="/saved-movies">
-      <button className={styles.closeButton} onClick={removeFilm} disabled={buttonDisaled}>
-            <img src={closeImg} alt="закрыть"></img>
-          </button>
-      <a className={styles.photo} target="_blank" href={movie.trailerLink ? movie.trailerLink : movie.thumbnail}><img
-            className={styles.photo}
-            src={movie.image}
-            alt={movie.nameRU}
-          /></a>
-          <h3 className={styles.caption}>{movie.nameRU}</h3>
-          <p className={styles.filmDuration}>{duration}</p>
+        <button
+          className={styles.closeButton}
+          onClick={removeFilm}
+          disabled={buttonDisaled}
+        >
+          <img src={closeImg} alt="закрыть"></img>
+        </button>
+        <a
+          className={styles.photo}
+          target="_blank"
+          href={movie.trailerLink ? movie.trailerLink : movie.thumbnail}
+        >
+          <img className={styles.photo} src={movie.image} alt={movie.nameRU} />
+        </a>
+        <h3 className={styles.caption}>{movie.nameRU}</h3>
+        <p className={styles.filmDuration}>{duration}</p>
       </Route>
     </li>
   );

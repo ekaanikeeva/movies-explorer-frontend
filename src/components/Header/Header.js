@@ -41,32 +41,39 @@ function Header({ loggedIn }) {
         </Link>
       </Route>
       <nav className={styles.header__links}>
-        {!loggedIn ? 
-        <Route exact path="/">
-          <Link
-            to="/signup"
-            className={classNames(
-              styles.header__link,
-              styles.header__link_register
-            )}
-          >
-            Регистрация
-          </Link>
-          <Link
-            to="/signin"
-            className={classNames(
-              styles.header__link,
-              styles.header__link_enter
-            )}
-          >
-            Войти
-          </Link>
-        </Route>
-        : ""
-}
+        {!loggedIn ? (
+          <Route exact path="/">
+            <Link
+              to="/signup"
+              className={classNames(
+                styles.header__link,
+                styles.header__link_register
+              )}
+            >
+              Регистрация
+            </Link>
+            <Link
+              to="/signin"
+              className={classNames(
+                styles.header__link,
+                styles.header__link_enter
+              )}
+            >
+              Войти
+            </Link>
+          </Route>
+        ) : (
+          ""
+        )}
 
-        <Route exact path={loggedIn ? ["/", "/movies", "/saved-movies", "/profile"] 
-        : ["/movies", "/saved-movies", "/profile"]}>
+        <Route
+          exact
+          path={
+            loggedIn
+              ? ["/", "/movies", "/saved-movies", "/profile"]
+              : ["/movies", "/saved-movies", "/profile"]
+          }
+        >
           <button
             type="button"
             className={styles.header__burger}

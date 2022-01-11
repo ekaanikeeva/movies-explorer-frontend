@@ -16,7 +16,6 @@ function SearchForm({ setRequest, request, nameInput, isCheck, setIsCheck }) {
     setRequest(result);
   }
 
-
   return (
     <div className={styles.search}>
       <form
@@ -50,9 +49,12 @@ function SearchForm({ setRequest, request, nameInput, isCheck, setIsCheck }) {
         </div>
         <div className={styles.checkboxContainer}>
           <label className={styles.switch}>
-            <input type="checkbox" className={styles.checkbox}
-             onChange={() => setIsCheck(!isCheck)}
-            defaultChecked={isCheck}></input>
+            <input
+              type="checkbox"
+              className={styles.checkbox}
+              onChange={() => setIsCheck(!isCheck)}
+              defaultChecked={isCheck}
+            ></input>
             <span className={classNames(styles.slider, styles.round)}></span>
           </label>
           <p className={styles.checkbox__text}>Краткометражки</p>

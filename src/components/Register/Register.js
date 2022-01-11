@@ -4,14 +4,19 @@ import Form from "../Form/Form";
 import { useValidation } from "../../utils/Validate";
 import classNames from "classnames";
 
-function Register({ handleRegister, isError, errorMessage, ...props }) {
-
+function Register({
+  handleRegister,
+  isError,
+  errorMessage,
+  loggedIn = { loggedIn },
+  ...props
+}) {
   const { values, handleChange, errors, isValid } = useValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    handleRegister(values['name'] , values['email'] , values['password']);
+    handleRegister(values["name"], values["email"], values["password"]);
   }
 
   return (
@@ -36,10 +41,17 @@ function Register({ handleRegister, isError, errorMessage, ...props }) {
         maxLength={50}
         onChange={handleChange}
         required
-
       />
-      <span className={errors["name"] === '' ? styles.form__tip : classNames(styles.form__tip, styles.form__tip_active)}>{errors["name"]}</span>
-      
+      <span
+        className={
+          errors["name"] === ""
+            ? styles.form__tip
+            : classNames(styles.form__tip, styles.form__tip_active)
+        }
+      >
+        {errors["name"]}
+      </span>
+
       <h3 className={styles.form__hint}>Email</h3>
       <input
         type="email"
@@ -51,7 +63,15 @@ function Register({ handleRegister, isError, errorMessage, ...props }) {
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         required
       />
-      <span className={errors["email"] === "" ? styles.form__tip : classNames(styles.form__tip, styles.form__tip_active)}>{errors["email"]}</span>
+      <span
+        className={
+          errors["email"] === ""
+            ? styles.form__tip
+            : classNames(styles.form__tip, styles.form__tip_active)
+        }
+      >
+        {errors["email"]}
+      </span>
 
       <h3 className={styles.form__hint}>Пароль</h3>
       <input
@@ -62,8 +82,15 @@ function Register({ handleRegister, isError, errorMessage, ...props }) {
         minLength={8}
         required
       />
-      <span className={errors["password"] === '' ? styles.form__tip : classNames(styles.form__tip, styles.form__tip_active)}>{errors["password"]}</span>
-      
+      <span
+        className={
+          errors["password"] === ""
+            ? styles.form__tip
+            : classNames(styles.form__tip, styles.form__tip_active)
+        }
+      >
+        {errors["password"]}
+      </span>
     </Form>
   );
 }

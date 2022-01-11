@@ -60,12 +60,10 @@ export const login = (email, password) => {
 
   export const signOut = () => {
       return fetch(`${BASE_URL}/signout`, {
-        method: "DELETE",
+        method: "GET",
         credentials: 'include',
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then(_checkResponse);
+        redirect: "follow",
+      })
     };
 
     export const saveFilm = (film) => {
