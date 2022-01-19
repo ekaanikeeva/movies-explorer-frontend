@@ -1,77 +1,119 @@
 import React from "react";
+import { useHistory, Route } from "react-router-dom";
 import styles from "./MoviesCardList.module.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import img_01 from "../../images/movies/film 01.jpg";
-import img_02 from "../../images/movies/film 02.jpg";
-import img_03 from "../../images/movies/film 03.jpg";
-import img_04 from "../../images/movies/film 04.jpg";
-import img_05 from "../../images/movies/film 05.jpg";
-import img_06 from "../../images/movies/film 06.jpg";
-import img_07 from "../../images/movies/film 07.jpg";
-import img_08 from "../../images/movies/film 08.jpg";
-import img_09 from "../../images/movies/film 09.jpg";
-import img_10 from "../../images/movies/film 10.jpg";
-import img_11 from "../../images/movies/film 11.jpg";
-import img_12 from "../../images/movies/film 12.jpg";
+import { BASE_URL } from "../../utils/MoviesApi";
+import { UserContext } from "../../context/UserContext";
+import classNames from "classnames";
 
-function MoviesCardList() {
+function MoviesCardList({
+  saveFilms,
+  isSave,
+  setIsSave,
+  movies,
+  request,
+  convertTime,
+  isCheck,
+  windowWidth,
+  noFilmText,
+}) {
+  const user = React.useContext(UserContext);
+  const history = useHistory();
+
+  const [buttonText, setButtonText] = React.useState("Сохранить");
+  const [showMovies, setShowMovies] = React.useState(
+    windowWidth > 1170 ? 12 : windowWidth > 769 ? 8 : 5
+  );
+  const [addedByButton, setAddedByButton] = React.useState(
+    windowWidth > 1170 ? 3 : 2
+  );
+
+  let filteredMovies = movies.filter((item) => {
+    if (request !== null) {
+      if ((isCheck && item.duration <= 40) || !isCheck) {
+        return item.nameRU.toLowerCase().includes(request.toLowerCase());
+      } else return;
+    } else {
+      if ((isCheck && item.duration <= 40) || !isCheck) {
+        return item;
+      }
+    }
+  });
+
+  function addMoviesByButton() {
+    setShowMovies(showMovies + addedByButton);
+  }
+
   return (
     <section className={styles.movies}>
-      <ul className={styles.moviesCards}>
-        <MoviesCard
-          src={img_01}
-          caption="33 слова о дизайне"
-          duration="1ч 17м"
-        />
-        <MoviesCard
-          src={img_02}
-          caption="Киноальманах «100 лет дизайна»"
-          duration="1ч 17м"
-        />
-        <MoviesCard
-          src={img_03}
-          caption="В погоне за Бенкси"
-          duration="1ч 17м"
-        />
-        <MoviesCard
-          src={img_04}
-          caption="Баския: Взрыв реальности"
-          duration="1ч 17м"
-        />
-        <MoviesCard src={img_05} caption="Бег это свобода" duration="1ч 17м" />
-        <MoviesCard src={img_06} caption="Книготорговцы" duration="1ч 17м" />
-        <MoviesCard
-          src={img_07}
-          caption="Когда я думаю о Германии ночью"
-          duration="1ч 17м"
-        />
-        <MoviesCard
-          src={img_08}
-          caption="Gimme Danger: История Игги и The Stooges"
-          duration="1ч 17м"
-        />
-        <MoviesCard
-          src={img_09}
-          caption="Дженис: Маленькая девочка грустит"
-          duration="1ч 17м"
-        />
-        <MoviesCard
-          src={img_10}
-          caption="Соберись перед прыжком"
-          duration="1ч 17м"
-        />
-        <MoviesCard
-          src={img_11}
-          caption="Пи Джей Харви: A dog called money"
-          duration="1ч 17м"
-        />
-        <MoviesCard
-          src={img_12}
-          caption="По волнам: Искусство звука в кино"
-          duration="1ч 17м"
-        />
-      </ul>
-      <button className={styles.moviesBtn}>Ещё</button>
+      {filteredMovies.length === 0 ? (
+        <p className={styles.noFilms__text}>{noFilmText}</p>
+      ) : (
+        <ul className={styles.moviesCards}>
+          <Route exact path="/movies">
+            {filteredMovies.slice(0, showMovies).map((movie) => {
+              return (
+                <MoviesCard
+                  key={movie.id}
+                  src={`${BASE_URL}${movie.image.url}`}
+                  caption={movie.nameRU}
+                  duration={convertTime(movie.duration)}
+                  saveFilmsArray={saveFilms}
+                  movie={movie}
+                  moviesUrl={BASE_URL}
+                  movieId={movie.id}
+                  setIsSave={setIsSave}
+                  isButtonText={buttonText}
+                  setButtonText={setButtonText}
+                  isCheck={isCheck}
+                />
+              );
+            })}
+          </Route>
+          <Route exact path="/saved-movies">
+            {saveFilms.slice(0, showMovies).map((item) => {
+              return (
+                <MoviesCard
+                  key={item._id}
+                  duration={convertTime(item.duration)}
+                  saveFilmsArray={saveFilms}
+                  setIsSave={setIsSave}
+                  isButtonText={buttonText}
+                  setButtonText={setButtonText}
+                  movie={item}
+                  setIsSave={setIsSave}
+                  movieId={item._id}
+                />
+              );
+            })}
+          </Route>
+        </ul>
+      )}
+
+      <Route path="/movies">
+        <button
+          className={
+            filteredMovies.length > showMovies
+              ? classNames(styles.moviesBtn, styles.moviesBtn_active)
+              : styles.moviesBtn
+          }
+          onClick={addMoviesByButton}
+        >
+          Ещё
+        </button>
+      </Route>
+      <Route exact path="/saved-movies">
+        <button
+          className={
+            saveFilms.length > showMovies
+              ? classNames(styles.moviesBtn, styles.moviesBtn_active)
+              : styles.moviesBtn
+          }
+          onClick={addMoviesByButton}
+        >
+          Ещё
+        </button>
+      </Route>
     </section>
   );
 }

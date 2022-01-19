@@ -1,23 +1,15 @@
 import React from "react";
+import classNames from "classnames";
 import styles from "./Login.module.css";
 import Form from "../Form/Form";
+import { useValidation } from "../../utils/Validate";
 
-function Login() {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-
-  // props.isRegister(true)
-  function handleChangeEmail(change) {
-    setEmail(change.target.value);
-  }
-
-  function handleChangePassword(change) {
-    setPassword(change.target.value);
-  }
+function Login({ handleLogin, isError, errorMessage }) {
+  const { values, handleChange, errors, isValid } = useValidation();
 
   function handleSubmit(e) {
     e.preventDefault();
-    //   props.onRegister(email, password);
+    handleLogin(values["email"], values["password"]);
   }
 
   return (
@@ -29,31 +21,49 @@ function Login() {
       link="/signup"
       linkName="Регистрация"
       onSubmit={handleSubmit}
+      isValid={isValid}
+      isError={isError}
+      errorMessage={errorMessage}
     >
       <h3 className={styles.form__hint}>Email</h3>
       <input
-        value={email || ""}
         type="email"
-        name="emailWithLogin"
+        name="email"
         className={styles.form__input}
-        id="input-log-email"
         minLength={2}
         maxLength={50}
-        onChange={handleChangeEmail}
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        onChange={handleChange}
         required
       />
-      <h3 className={styles.form__hint}>Пароль</h3>
+      <span
+        className={
+          errors["email"] === ""
+            ? styles.form__tip
+            : classNames(styles.form__tip, styles.form__tip_active)
+        }
+      >
+        {errors["email"]}
+      </span>
 
+      <h3 className={styles.form__hint}>Пароль</h3>
       <input
-        value={password || ""}
-        onChange={handleChangePassword}
+        onChange={handleChange}
         type="password"
-        name="passwordWithLogin"
+        name="password"
         className={styles.form__input}
         minLength={8}
-        id="input-log-password"
         required
       />
+      <span
+        className={
+          errors["password"] === ""
+            ? styles.form__tip
+            : classNames(styles.form__tip, styles.form__tip_active)
+        }
+      >
+        {errors["password"]}
+      </span>
     </Form>
   );
 }

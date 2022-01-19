@@ -133,15 +133,15 @@
   display: none;
 }
 
-.checkbox:checked+.slider {
+.checkbox:checked + .slider {
   background-color: #3ddc84;
 }
 
-.checkbox:focus+.slider {
+.checkbox:focus + .slider {
   box-shadow: 0 0 1px white;
 }
 
-.checkbox:checked+.slider:before {
+.checkbox:checked + .slider:before {
   transform: translateX(16px);
 }
 
